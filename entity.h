@@ -31,5 +31,7 @@ public:
 	virtual void set_speed(int speed);
 
 	void display_stats();
+	virtual int attack();
+	virtual void take_damage(int damage);
 };
 #endif

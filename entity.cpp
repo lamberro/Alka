@@ -70,3 +70,16 @@ void Entity::display_stats() {
 	cout << "HP: " << this->hp << "/" << this->max_hp << endl;
 	cout << "Speed: " << this->speed << endl;
 }
+
+int Entity::attack() {
+	cout << "[DEBUG] Attack: " << this->strength * 2 << endl;
+	return this->strength * 2;
+}
+
+void Entity::take_damage(int damage) {
+	int x = damage - this->toughness;
+	if (x < 0)
+		x = 0;
+	cout << "[DEBUG] Damage taken: " << x << endl;
+	this->hp -= x;
+}

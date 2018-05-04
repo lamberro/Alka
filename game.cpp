@@ -79,33 +79,57 @@ void Game::fight(Player * a, Entity * b) {
 	cout << "You're in a fight!" << endl;
 	bool is_fight = true;
 	while (is_fight) {
-		cout << endl;
-		cout << "You: " << endl;
-		a->display_stats();
-		cout << "Enemy: " << endl;
-		b->display_stats();
-		cout << "What would you like to do?" << endl;
-		cout << "[0] Attack." << endl;
-		cout << "[1] Attempt escape." << endl;
-		cout << "[2] Just hang around, I guess." << endl;
-		string line;
-		getline(cin, line);
-		if (line == "0") {
-			cout << "You swing your fists [not implemented]" << endl;
-			//a->attack();
+		//verify that player is still alive
+		//also used if player enters fight with no health
+		if (a->get_hp() == 0) {
+			cout << "You have lost all health and have fainted." << endl;
+			is_fight = false;
 		}
-		if (line == "1") {
-			int escape = rand() % 100;
-			if (escape <= 50) {
-				cout << "You escape!" << endl;
+		if (is_fight) {
+			//display stats
+			cout << "You: " << endl;
+			a->display_stats();
+			cout << "Enemy: " << endl;
+			b->display_stats();
+
+			//player action
+			cout << "What would you like to do?" << endl;
+			cout << "[0] Attack." << endl;
+			cout << "[1] Attempt escape." << endl;
+			cout << "[2] Just hang around, I guess." << endl;
+			string line;
+			getline(cin, line);
+			if (line == "0") {
+				cout << "You swing your fists" << endl;
+				int damage = a->attack();
+				b->take_damage(damage);
+			}
+			if (line == "1") {
+				int escape = rand() % 100;
+				if (escape <= 50) {
+					cout << "You escape!" << endl;
+					is_fight = false;
+				}
+				else {
+					cout << "You fail to escape." << endl;
+				}
+			}
+			if (line == "2") {
+				cout << "You... just hang around..." << endl;
+			}
+
+			//check that enemy is still alive
+			if (b->get_hp() <= 0) {
+				//enemy is dead
+				cout << b->get_name() << " has fainted" << endl;
 				is_fight = false;
 			}
 			else {
-				cout << "You fail to escape." << endl;
+				//enemy action
+				cout << b->get_name() << " attacks!" << endl;
+				int damage = b->attack();
+				a->take_damage(damage);
 			}
-		}
-		if (line == "2") {
-			cout << "You... just hang around..." << endl;
 		}
 	}
 }
