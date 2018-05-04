@@ -3,6 +3,7 @@
 #include "entity.h"
 #include <iostream>
 #include <string>
+#include <random>
 
 using namespace std;
 
@@ -82,4 +83,19 @@ void Entity::take_damage(int damage) {
 		x = 0;
 	cout << "[DEBUG] Damage taken: " << x << endl;
 	this->hp -= x;
+}
+
+//evade equation: chance = (evader's speed)/(attacker's speed * 5)
+//equal speed gives 20% chance
+bool Entity::evade(Entity * a, Entity * b) {
+	int speed_a = a->get_speed();
+	int speed_b = b->get_speed();
+	float chance = (float)speed_a / (speed_b * 5);
+	chance *= 100;
+	int threshold = rand() % 100;
+	if (chance > threshold) {
+		cout << a->get_name() << " evaded the attack" << endl;
+		return true;
+	}
+	return false;
 }

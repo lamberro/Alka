@@ -93,29 +93,39 @@ void Game::fight(Player * a, Entity * b) {
 			b->display_stats();
 
 			//player action
-			cout << "What would you like to do?" << endl;
-			cout << "[0] Attack." << endl;
-			cout << "[1] Attempt escape." << endl;
-			cout << "[2] Just hang around, I guess." << endl;
-			string line;
-			getline(cin, line);
-			if (line == "0") {
-				cout << "You swing your fists" << endl;
-				int damage = a->attack();
-				b->take_damage(damage);
-			}
-			if (line == "1") {
-				int escape = rand() % 100;
-				if (escape <= 50) {
-					cout << "You escape!" << endl;
-					is_fight = false;
+			bool player_action = false;
+			while (!player_action) {
+				cout << "What would you like to do?" << endl;
+				cout << "[0] Attack." << endl;
+				cout << "[1] Attempt escape." << endl;
+				cout << "[2] Just hang around, I guess." << endl;
+				string line;
+				getline(cin, line);
+
+				if (line == "0") {
+					player_action = true;
+					cout << "You swing your fists" << endl;
+					bool enemy_evade = b->evade(b, a);
+					if (enemy_evade == false) {
+						int damage = a->attack();
+						b->take_damage(damage);
+					}
 				}
-				else {
-					cout << "You fail to escape." << endl;
+				if (line == "1") {
+					player_action = true;
+					int escape = rand() % 100;
+					if (escape <= 50) {
+						cout << "You escape!" << endl;
+						is_fight = false;
+					}
+					else {
+						cout << "You fail to escape." << endl;
+					}
 				}
-			}
-			if (line == "2") {
-				cout << "You... just hang around..." << endl;
+				if (line == "2") {
+					player_action = true;
+					cout << "You... just hang around..." << endl;
+				}
 			}
 
 			//check that enemy is still alive
@@ -127,8 +137,11 @@ void Game::fight(Player * a, Entity * b) {
 			else {
 				//enemy action
 				cout << b->get_name() << " attacks!" << endl;
-				int damage = b->attack();
-				a->take_damage(damage);
+				bool player_evade = a->evade(a, b);
+				if (player_evade == false) {
+					int damage = b->attack();
+					a->take_damage(damage);
+				}
 			}
 		}
 	}

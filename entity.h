@@ -33,5 +33,6 @@ public:
 	void display_stats();
 	virtual int attack();
 	virtual void take_damage(int damage);
+	virtual bool evade(Entity * a, Entity * b);
 };
 #endif
