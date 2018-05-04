@@ -1,0 +1,20 @@
+#ifndef FOREST_H
+#define FOREST_H
+
+#include "location.h"
+#include "entity.h"
+#include "player.h"
+
+using namespace std;
+
+class Forest : public Location {
+private:
+	//
+public:
+	void choose(Player * hero);
+	void pick_berries();
+	void wander();
+	void encounter_wolf(Player * hero);
+};
+
+#endif
