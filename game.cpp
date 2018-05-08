@@ -85,6 +85,7 @@ void Game::camp() {
 	}
 }
 
+//Player is entity a, enemy is entity b.
 void Game::fight(Player * a, Entity * b) {
 	cout << "You're in a fight!" << endl;
 	bool is_fight = true;
@@ -130,6 +131,15 @@ void Game::fight(Player * a, Entity * b) {
 				}
 			}
 
+			//poison for enemy b
+			if (is_fight) {
+				cout << endl;
+				if (b->get_poisoned()) {
+					cout << b->get_name() << " takes poison damage." << endl;
+					b->poison_damage();
+				}
+			}
+
 			if (is_fight) {
 				cout << endl;
 				//check that enemy is still alive
@@ -145,8 +155,17 @@ void Game::fight(Player * a, Entity * b) {
 					b->choose_action(b, a, &is_fight);
 				}
 			}
+			//poison for player a
+			if (is_fight) {
+				cout << endl;
+				if (a->get_poisoned()) {
+					cout << a->get_name() << " takes poison damage." << endl;
+					a->poison_damage();
+				}
+			}
 		}
 	}
+	a->set_poisoned(false);
 }
 
 void Game::display_fight_info(Entity * a, Entity * b) {

@@ -16,6 +16,7 @@ public:
 	void wander();
 	void encounter_wolf(Player * hero);
 	void encounter_rabbit(Player * hero);
+	void encounter_spider(Player * hero);
 };
 
 #endif

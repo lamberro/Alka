@@ -1,6 +1,6 @@
 # Alka
 
-current version: 0.0.4 (XP Update)
+current version: 0.0.5 (Spider Update)
 
 This is a small adventure game I've been making. I'll try to update most of the major changes to here.
 
@@ -13,7 +13,6 @@ My friends might help me on this, so I'll try to credit them where I can.
 ## To do (soon): ##
 * Implement a new location
 * implement an inventory
-* Implement multiple kinds of attacks, such as poisoning
 * Implement a loot drop system
 * Implement time system
 
@@ -27,6 +26,11 @@ My friends might help me on this, so I'll try to credit them where I can.
 * Implement some final boss
 
 ## Recent fixes and new stuff: ##
+### 0.0.5 (Spider Update):
+* Implemented spiders, which can be encountered in the forest and are the strongest enemy in the game currently.
+* Spiders use the new poisoning system.
+* Oh yeah, there's a new poisoning system.
+
 ### 0.0.4 (XP Update):
 * Implemented xp and max_xp. Xp increases upon defeating enemies. Different enemies call different functions upon death, but the default is 10xp. Max_xp increases exponentially with every level. Player levels up if is at camp and xp >= max_xp.
 
@@ -37,7 +41,6 @@ My friends might help me on this, so I'll try to credit them where I can.
 * Inflated player and enemy stats to make my life easier
 * Player now has 3% chance to get lost in forest and be forced to wander more. This might be more annoying than fun.
 * Overall made everything even cleaner
-
 
 ### 0.0.2:
 * Fixed fighting UI to be readable,

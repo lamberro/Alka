@@ -12,6 +12,7 @@ Entity::Entity() {
 	hp = 5;
 	max_hp = 100;
 	speed = 0;
+	poisoned = false;
 }
 
 string Entity::get_name() {
@@ -38,6 +39,10 @@ int Entity::get_speed() {
 	return this->speed;
 }
 
+bool Entity::get_poisoned() {
+	return this->poisoned;
+}
+
 void Entity::set_name(string name) {
 	this->name = name;
 }
@@ -60,6 +65,10 @@ void Entity::set_max_hp(int max_hp) {
 
 void Entity::set_speed(int speed) {
 	this->speed = speed;
+}
+
+void Entity::set_poisoned(bool poisoned) {
+	this->poisoned = poisoned;
 }
 
 void Entity::display_stats() {
@@ -125,4 +134,21 @@ void Entity::choose_action(Entity * a, Entity * b, bool * is_fight) { //unique t
 int Entity::drop_experience() {
 	cout << this->name << " dropped 10 XP." << endl;
 	return 10;
+}
+
+void Entity::poison(Entity * a) {
+	if (a->get_poisoned()) {
+		cout << a->get_name() << " is already poisoned." << endl;
+	}
+	else {
+		cout << a->get_name() << " is poisoned!" << endl;
+		a->set_poisoned(true);
+	}
+}
+
+//poison damage is currently 9% of max health + 1
+void Entity::poison_damage() {
+	int damage = this->max_hp * 0.09;
+	damage++;
+	this->hp -= damage;
 }

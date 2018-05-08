@@ -3,6 +3,7 @@
 #include "entity.h"
 #include "wolf.h"
 #include "rabbit.h"
+#include "spider.h"
 #include "player.h"
 #include "forest.h"
 #include <iostream>
@@ -10,27 +11,30 @@
 #include <random>
 
 /*
-20% pick berries
-20% wander
-30% encounter rabbit
+10% pick berries
+10% wander
+20% encounter rabbit
 30% encounter wolf
-
+30% encounter giant spider
 3% get lost
 */
 void Forest::choose(Player * hero) {
 	int x = rand() % 100;
 	int lost = rand() % 100;
-	if (x < 20) {
+	if (x < 10) {
 		pick_berries();
 	}
-	if (x >= 20 && x < 40) {
+	if (x >= 10 && x < 20) {
 		wander();
 	}
-	if (x >= 40 && x < 70) {
+	if (x >= 20 && x < 40) {
 		encounter_rabbit(hero);
 	}
-	if (x >= 70 && x < 100) {
+	if (x >= 40 && x < 70) {
 		encounter_wolf(hero);
+	}
+	if (x >= 70 && x < 100) {
+		encounter_spider(hero);
 	}
 	if (lost < 3) {
 		cout << endl << "You get lost and delve deeper into the forest" << endl;
@@ -63,4 +67,11 @@ void Forest::encounter_rabbit(Player * hero) {
 	cout << "You have encountered a wild rabbit!" << endl;
 	Game::fight(hero, rabbit);
 	delete rabbit;
+}
+
+void Forest::encounter_spider(Player * hero) {
+	Entity * spider = new Spider;
+	cout << "You have encountered a giant spider!" << endl;
+	Game::fight(hero, spider);
+	delete spider;
 }
