@@ -25,7 +25,6 @@ My friends might help me on this, so I'll try to credit them where I can.
 * Implement currency and a use for currency (like a town, maybe?)
 * Implement armor / weapons
 * Implement some final boss
-* Add story elements, backstory, and NPCs
 
 ## Recent fixes and new stuff: ##
 ### 0.0.4 (XP Update):
