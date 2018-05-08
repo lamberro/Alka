@@ -15,6 +15,7 @@ public:
 	void pick_berries();
 	void wander();
 	void encounter_wolf(Player * hero);
+	void encounter_rabbit(Player * hero);
 };
 
 #endif

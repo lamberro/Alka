@@ -5,11 +5,13 @@
 
 using namespace std;
 
-class Rabbit : protected Entity {
+class Rabbit : public Entity {
 private:
 	//
 public:
 	Rabbit();
+
+	void choose_action(Entity * a, Entity * b, bool * is_fight);
 };
 
 #endif // !RABBIT_H

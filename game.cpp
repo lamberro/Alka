@@ -55,7 +55,8 @@ void Game::camp() {
 		cout << "[0] go to the forest." << endl;
 		cout << "[1] sleep." << endl;
 		cout << "[2] display player info." << endl;
-		cout << "[3] quit game." << endl;
+		cout << "[3] Level up." << endl;
+		cout << "[4] quit game." << endl;
 		string line;
 		getline(cin, line);
 
@@ -73,6 +74,9 @@ void Game::camp() {
 			hero->display_stats();
 		}
 		if (line == "3") {
+			hero->level_up();
+		}
+		if (line == "4") {
 			game_running = false;
 		}
 	}
@@ -84,7 +88,7 @@ void Game::fight(Player * a, Entity * b) {
 	while (is_fight) {
 		//verify that player is still alive
 		//also used if player enters fight with no health
-		if (a->get_hp() == 0) {
+		if (a->get_hp() <= 0) {
 			cout << "You have lost all health and have fainted." << endl;
 			is_fight = false;
 		}
@@ -133,7 +137,7 @@ void Game::fight(Player * a, Entity * b) {
 				}
 				else {
 					//enemy action
-					b->choose_action(b, a);
+					b->choose_action(b, a, &is_fight);
 				}
 			}
 		}

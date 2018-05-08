@@ -8,11 +8,11 @@ using namespace std;
 
 Player::Player() {
 	name = "Hero";
-	strength = 5;
-	toughness = 1;
-	hp = 15;
+	strength = 10;
+	toughness = 10;
+	hp = 100;
 	max_hp = 100;
-	speed = 1;
+	speed = 10;
 }
 
 string Player::get_name(){
@@ -76,4 +76,12 @@ void Player::heal(int x) {
 	if (hp > max_hp) {
 		hp = max_hp;
 	}
+}
+
+void Player::level_up() {
+	strength += 10;
+	toughness += 10;
+	max_hp += 15;
+	hp = max_hp;
+	speed += 10;
 }

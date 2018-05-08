@@ -120,6 +120,6 @@ bool Entity::escape(Entity * a, Entity * b) {
 	return false;
 }
 
-void Entity::choose_action(Entity * a, Entity * b) { //unique to enemies, but this is the default
+void Entity::choose_action(Entity * a, Entity * b, bool * is_fight) { //unique to enemies, but this is the default
 	a->attack(a, b);
 }

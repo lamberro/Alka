@@ -28,6 +28,7 @@ public:
 
 	void display_stats();
 	void heal(int x);
+	void level_up();
 };
 
 #endif
