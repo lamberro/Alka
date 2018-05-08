@@ -1,6 +1,6 @@
 # Alka
 
-current version: 0.0.3
+current version: 0.0.3 (Rabbit Patch)
 
 This is a small adventure game I've been making. I'll try to update most of the major changes to here.
 
