@@ -2,8 +2,6 @@
 #include "rabbit.h"
 #include <random>
 
-using namespace std;
-
 Rabbit::Rabbit() {
 	name = "Rabbit";
 	strength = 7;

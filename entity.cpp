@@ -5,8 +5,6 @@
 #include <string>
 #include <random>
 
-using namespace std;
-
 Entity::Entity() {
 	name = "DEFAULT_ENTITY";
 	strength = 0;
@@ -122,4 +120,9 @@ bool Entity::escape(Entity * a, Entity * b) {
 
 void Entity::choose_action(Entity * a, Entity * b, bool * is_fight) { //unique to enemies, but this is the default
 	a->attack(a, b);
+}
+
+int Entity::drop_experience() {
+	cout << this->name << " dropped 10 XP." << endl;
+	return 10;
 }

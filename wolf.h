@@ -9,6 +9,8 @@ private:
 	//
 public:
 	Wolf();
+
+	int drop_experience();
 };
 
 #endif

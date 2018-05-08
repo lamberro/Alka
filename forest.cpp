@@ -9,8 +9,6 @@
 #include <time.h>
 #include <random>
 
-using namespace std;
-
 /*
 20% pick berries
 20% wander

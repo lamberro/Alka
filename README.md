@@ -1,6 +1,6 @@
 # Alka
 
-current version: 0.0.3
+current version: 0.0.4 (XP Update)
 
 This is a small adventure game I've been making. I'll try to update most of the major changes to here.
 
@@ -10,8 +10,28 @@ I have no idea what the plot of this adventure is. I haven't thought that far ah
 
 My friends might help me on this, so I'll try to credit them where I can.
 
+## To do (soon): ##
+* Implement a new location
+* implement an inventory
+* Implement multiple kinds of attacks, such as poisoning
+* Implement a loot drop system
+* Implement time system
+
+## To do (eventually): ##
+* Implement story / lore, or at least some introduction
+* Implement more flavor text at camp and in battles
+* Implement some degree of character creation
+* Have enemies spawn according to level
+* Implement currency and a use for currency (like a town, maybe?)
+* Implement armor / weapons
+* Implement some final boss
+* Add story elements, backstory, and NPCs
+
 ## Recent fixes and new stuff: ##
-### 0.0.3:
+### 0.0.4 (XP Update):
+* Implemented xp and max_xp. Xp increases upon defeating enemies. Different enemies call different functions upon death, but the default is 10xp. Max_xp increases exponentially with every level. Player levels up if is at camp and xp >= max_xp.
+
+### 0.0.3 (Rabbit Update):
 * Implemented Wild Rabbit encounter in forest. Rabbits almost always try to evade, and they have high speed.
 * Player used to only die if health hit exactly 0. Now dies at negative health.
 * Level up now available from camp. This increases all stats by 10, and max HP by 15.
@@ -26,20 +46,3 @@ My friends might help me on this, so I'll try to credit them where I can.
 
 ### 0.0.1:
 * Entering improper input in a fight won't cause you to die.
-
-## To do (soon): ##
-* Implement a new location,
-* implement an inventory,
-* Implement multiple kinds of attacks, such as poisoning,
-* Implement a loot drop system,
-* Implement XP, have enemies drop XP
-
-## To do (eventually): ##
-* Implement time system,
-* Implement story / lore, or at least some introduction,
-* Implement more flavor text at camp and in battles,
-* Implement some degree of character creation,
-* Have enemies spawn according to level,
-* Implement currency and a use for currency,
-* Implement armor / weapons,
-* Implement some final boss

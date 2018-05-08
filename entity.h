@@ -36,5 +36,6 @@ public:
 	virtual bool evade(Entity * a, Entity * b);
 	virtual bool escape(Entity * a, Entity * b);
 	virtual void choose_action(Entity * a, Entity * b, bool * is_fight); //used by enemies
+	virtual int drop_experience(); //used exclusively by enemies
 };
 #endif

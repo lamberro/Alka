@@ -7,7 +7,6 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
 Game::Game() {
 	this->hero = new Player;
 	this->num_locations = 1;
@@ -50,6 +49,10 @@ void Game::set_locations(Location ** new_locations) {
 void Game::camp() {
 	bool game_running = true;
 	while (game_running == true) {
+		if (this->hero->get_xp() >= this->hero->get_max_xp()) {
+			cout << endl;
+			this->hero->level_up();
+		}
 		cout << endl;
 		cout << "You are at your camp. What would you like to do?" << endl;
 		cout << "[0] go to the forest." << endl;
@@ -133,6 +136,8 @@ void Game::fight(Player * a, Entity * b) {
 				if (b->get_hp() <= 0) {
 					//enemy is dead
 					cout << b->get_name() << " has fainted" << endl;
+					int new_xp = b->drop_experience();
+					a->set_xp(a->get_xp() + new_xp); //could be an increment xp function
 					is_fight = false;
 				}
 				else {
