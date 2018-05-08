@@ -27,6 +27,7 @@ public:
 
 	void camp();
 	static void fight(Player * a, Entity * b);
+	static void display_fight_info(Entity * a, Entity * b);
 };
 
 #endif

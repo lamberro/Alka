@@ -31,8 +31,10 @@ public:
 	virtual void set_speed(int speed);
 
 	void display_stats();
-	virtual int attack();
+	virtual void attack(Entity * a, Entity * b);
 	virtual void take_damage(int damage);
 	virtual bool evade(Entity * a, Entity * b);
+	virtual bool escape(Entity * a, Entity * b);
+	virtual void choose_action(Entity * a, Entity * b); //used by enemies
 };
 #endif

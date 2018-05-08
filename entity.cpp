@@ -72,17 +72,21 @@ void Entity::display_stats() {
 	cout << "Speed: " << this->speed << endl;
 }
 
-int Entity::attack() {
-	cout << "[DEBUG] Attack: " << this->strength * 2 << endl;
-	return this->strength * 2;
+void Entity::attack(Entity * a, Entity * b) {
+	cout << a->get_name() << " lashes out." << endl; //I should make this more unique.
+	bool enemy_evade = b->evade(b, a);
+	if (enemy_evade == false) {
+		int damage = a->get_strength() * 2;
+		b->take_damage(damage);
+	}
 }
 
 void Entity::take_damage(int damage) {
 	int x = damage - this->toughness;
 	if (x < 0)
 		x = 0;
-	cout << "[DEBUG] Damage taken: " << x << endl;
 	this->hp -= x;
+	cout << this->name << " takes " << x << " damage." << endl;
 }
 
 //evade equation: chance = (evader's speed)/(attacker's speed * 5)
@@ -98,4 +102,24 @@ bool Entity::evade(Entity * a, Entity * b) {
 		return true;
 	}
 	return false;
+}
+
+//currently the same as evade
+bool Entity::escape(Entity * a, Entity * b) {
+	cout << a->get_name() << " attempts an escape!" << endl;
+	int speed_a = a->get_speed();
+	int speed_b = b->get_speed();
+	float chance = (float)speed_a / (speed_b * 5);
+	chance *= 100;
+	int threshold = rand() % 100;
+	if (chance > threshold) {
+		cout << a->get_name() << " escaped the fight." << endl;
+		return true;
+	}
+	cout << a->get_name() << " failed to escape." << endl;
+	return false;
+}
+
+void Entity::choose_action(Entity * a, Entity * b) { //unique to enemies, but this is the default
+	a->attack(a, b);
 }

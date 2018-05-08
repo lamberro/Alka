@@ -50,6 +50,7 @@ void Game::set_locations(Location ** new_locations) {
 void Game::camp() {
 	bool game_running = true;
 	while (game_running == true) {
+		cout << endl;
 		cout << "You are at your camp. What would you like to do?" << endl;
 		cout << "[0] go to the forest." << endl;
 		cout << "[1] sleep." << endl;
@@ -57,6 +58,8 @@ void Game::camp() {
 		cout << "[3] quit game." << endl;
 		string line;
 		getline(cin, line);
+
+		cout << endl;
 		if (line == "0") {
 			locations[0]->choose(hero);
 		}
@@ -87,14 +90,13 @@ void Game::fight(Player * a, Entity * b) {
 		}
 		if (is_fight) {
 			//display stats
-			cout << "You: " << endl;
-			a->display_stats();
-			cout << "Enemy: " << endl;
-			b->display_stats();
+			cout << endl;
+			display_fight_info(a, b);
 
 			//player action
 			bool player_action = false;
 			while (!player_action) {
+				cout << endl;
 				cout << "What would you like to do?" << endl;
 				cout << "[0] Attack." << endl;
 				cout << "[1] Attempt escape." << endl;
@@ -102,24 +104,17 @@ void Game::fight(Player * a, Entity * b) {
 				string line;
 				getline(cin, line);
 
+				cout << endl;
 				if (line == "0") {
 					player_action = true;
 					cout << "You swing your fists" << endl;
-					bool enemy_evade = b->evade(b, a);
-					if (enemy_evade == false) {
-						int damage = a->attack();
-						b->take_damage(damage);
-					}
+					a->attack(a, b);
 				}
 				if (line == "1") {
 					player_action = true;
 					int escape = rand() % 100;
-					if (escape <= 50) {
-						cout << "You escape!" << endl;
+					if(a->escape(a, b)) {
 						is_fight = false;
-					}
-					else {
-						cout << "You fail to escape." << endl;
 					}
 				}
 				if (line == "2") {
@@ -128,21 +123,24 @@ void Game::fight(Player * a, Entity * b) {
 				}
 			}
 
-			//check that enemy is still alive
-			if (b->get_hp() <= 0) {
-				//enemy is dead
-				cout << b->get_name() << " has fainted" << endl;
-				is_fight = false;
-			}
-			else {
-				//enemy action
-				cout << b->get_name() << " attacks!" << endl;
-				bool player_evade = a->evade(a, b);
-				if (player_evade == false) {
-					int damage = b->attack();
-					a->take_damage(damage);
+			if (is_fight) {
+				cout << endl;
+				//check that enemy is still alive
+				if (b->get_hp() <= 0) {
+					//enemy is dead
+					cout << b->get_name() << " has fainted" << endl;
+					is_fight = false;
+				}
+				else {
+					//enemy action
+					b->choose_action(b, a);
 				}
 			}
 		}
 	}
+}
+
+void Game::display_fight_info(Entity * a, Entity * b) {
+	cout << a->get_name() << ": " << "(HP: " << a->get_hp() << "/" << a->get_max_hp() << ")" << endl;
+	cout << b->get_name() << ": " << "(HP: " << b->get_hp() << "/" << b->get_max_hp() << ")" << endl;
 }
