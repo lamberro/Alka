@@ -4,14 +4,16 @@
 #include "player.h"
 #include "location.h"
 #include "forest.h"
+#include "coast.h"
 #include <iostream>
 #include <string>
 
 Game::Game() {
 	this->hero = new Player;
-	this->num_locations = 1;
+	this->num_locations = 2;
 	this->locations = new Location*[num_locations]; //changes with number of locations
 	locations[0] = new Forest;
+	locations[1] = new Coast;
 }
 
 Game::~Game() {
@@ -56,10 +58,11 @@ void Game::camp() {
 		cout << endl;
 		cout << "You are at your camp. What would you like to do?" << endl;
 		cout << "[0] go to the forest." << endl;
-		cout << "[1] sleep." << endl;
-		cout << "[2] display player info." << endl;
-		cout << "[3] Level up." << endl;
-		cout << "[4] quit game." << endl;
+		cout << "[1] go to the coast." << endl;
+		cout << "[2] sleep." << endl;
+		cout << "[3] display player info." << endl;
+		cout << "[4] Level up." << endl;
+		cout << "[5] quit game." << endl;
 		string line;
 		getline(cin, line);
 
@@ -68,18 +71,21 @@ void Game::camp() {
 			locations[0]->choose(hero);
 		}
 		if (line == "1") {
+			locations[1]->choose(hero);
+		}
+		if (line == "2") {
 			cout << "You sleep." << endl;
 			hero->heal(10);
 			cout << "Your health is now: " << hero->get_hp() << "/" << hero->get_max_hp() << endl;
 		}
-		if (line == "2") {
+		if (line == "3") {
 			cout << "Player info:" << endl;
 			hero->display_stats();
 		}
-		if (line == "3") {
+		if (line == "4") {
 			hero->level_up();
 		}
-		if (line == "4") {
+		if (line == "5") {
 			game_running = false;
 		}
 	}
@@ -146,8 +152,10 @@ void Game::fight(Player * a, Entity * b) {
 				if (b->get_hp() <= 0) {
 					//enemy is dead
 					cout << b->get_name() << " has fainted" << endl;
-					int new_xp = b->drop_experience();
-					a->set_xp(a->get_xp() + new_xp); //could be an increment xp function
+					int new_xp = b->drop_xp();
+					a->gain_xp(new_xp);
+					int new_gold = b->drop_gold();
+					a->gain_gold(new_gold);
 					is_fight = false;
 				}
 				else {

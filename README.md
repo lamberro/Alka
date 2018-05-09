@@ -1,6 +1,6 @@
 # Alka
 
-current version: 0.0.5 (Spider Update)
+current version: 0.0.6 (Crab Coast Update)
 
 This is a small adventure game I've been making. I'll try to update most of the major changes to here.
 
@@ -11,10 +11,11 @@ I have no idea what the plot of this adventure is. I haven't thought that far ah
 My friends might help me on this, so I'll try to credit them where I can.
 
 ## To do (soon): ##
-* Implement a new location
 * implement an inventory
 * Implement a loot drop system
 * Implement time system
+* Give locations randomly generated names, e.g. "Fredera Forest"
+* add location number 3.
 
 ## To do (eventually): ##
 * Implement story / lore, or at least some introduction
@@ -26,6 +27,15 @@ My friends might help me on this, so I'll try to credit them where I can.
 * Implement some final boss
 
 ## Recent fixes and new stuff: ##
+### 0.0.6 (Crab Coast Update):
+* Implemented coast, which can be traveled to via camp. Coast has 2 events: wander and a crab encounter.
+* New encounter: CRAB! Crab has low health and low attack, but has high defense and a special move called "Crustacean Stance" that heals it.
+* Gold is now obtainable from defeating enemies. Drops in somewhat random amounts. Can be viewed in "Display Player info." Currently doesn't do anything.
+* Enemies now drop random-ish amounts of xp.
+* Healing function is now more generalized for future use, so more future enemies can use it.
+* Cleaned up code for incrementing gold and xp.
+* Added berries, which are an item that heals when consumed. Well, they probably do that. The player can't access items yet, since there isn't an inventory or anything, but the code is in place.
+
 ### 0.0.5 (Spider Update):
 * Implemented spiders, which can be encountered in the forest and are the strongest enemy in the game currently.
 * Spiders use the new poisoning system.

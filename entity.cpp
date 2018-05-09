@@ -96,6 +96,17 @@ void Entity::take_damage(int damage) {
 	cout << this->name << " takes " << x << " damage." << endl;
 }
 
+void Entity::heal(int x) {
+	this->hp += x;
+	if (hp > max_hp) {
+		cout << this->name << "'s health maxed out at " << this->max_hp << endl;
+		hp = max_hp;
+	}
+	else {
+		cout << this->name << "'s health increased by " << x << endl;
+	}
+}
+
 //evade equation: chance = (evader's speed)/(attacker's speed * 5)
 //equal speed gives 20% chance
 bool Entity::evade(Entity * a, Entity * b) {
@@ -131,9 +142,20 @@ void Entity::choose_action(Entity * a, Entity * b, bool * is_fight) { //unique t
 	a->attack(a, b);
 }
 
-int Entity::drop_experience() {
-	cout << this->name << " dropped 10 XP." << endl;
-	return 10;
+//by default drop 5-10 xp
+int Entity::drop_xp() {
+	int xp = rand() % 5;
+	xp += 5;
+	cout << this->name << " dropped " << xp << " XP." << endl;
+	return xp;
+}
+
+//by default drop 2-8 gold
+int Entity::drop_gold() {
+	int gold = rand() % 6;
+	gold += 2;
+	cout << this->name << " dropped " << gold << " gold." << endl;
+	return gold;
 }
 
 void Entity::poison(Entity * a) {

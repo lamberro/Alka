@@ -53,6 +53,7 @@ void Forest::pick_berries() {
 
 void Forest::wander() {
 	cout << "You go out and wander the forests." << endl;
+	cout << "You find nothing." << endl;
 }
 
 void Forest::encounter_wolf(Player * hero) {

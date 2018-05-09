@@ -11,7 +11,7 @@ public:
 	Spider();
 
 	void choose_action(Entity * a, Entity * b, bool * is_fight);
-	int drop_experience();
+	int drop_xp();
 };
 
 #endif SPIDER_H // !SPIDER_H

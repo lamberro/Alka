@@ -10,7 +10,7 @@ private:
 public:
 	Wolf();
 
-	int drop_experience();
+	int drop_xp();
 };
 
 #endif

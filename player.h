@@ -10,30 +10,22 @@ class Player : public Entity {
 private:
 	int xp;
 	int max_xp;
+	int gold;
 public:
 	Player();
 
-	string get_name();
-	int get_strength();
-	int get_toughness();
-	int get_hp();
-	int get_max_hp();
-	int get_speed();
 	int get_xp();
 	int get_max_xp();
+	int get_gold();
 
-	void set_name(string name);
-	void set_strength(int strength);
-	void set_toughness(int toughness);
-	void set_hp(int hp);
-	void set_max_hp(int max_hp);
-	void set_speed(int speed);
 	void set_xp(int xp);
 	void set_max_xp(int max_xp);
+	void set_gold(int gold);
 
 	void display_stats();
-	void heal(int x);
 	void level_up();
+	void gain_xp(int xp);
+	void gain_gold(int gold);
 };
 
 #endif

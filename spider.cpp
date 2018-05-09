@@ -25,7 +25,7 @@ void Spider::choose_action(Entity * a, Entity * b, bool * is_fight) {
 	}
 }
 
-int Spider::drop_experience() {
+int Spider::drop_xp() {
 	cout << this->name << " dropped 20 XP." << endl;
 	return 20;
 }

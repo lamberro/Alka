@@ -13,30 +13,7 @@ Player::Player() {
 	speed = 10;
 	xp = 0;
 	max_xp = 100;
-}
-
-string Player::get_name(){
-	return this->name;
-}
-
-int Player::get_strength() {
-	return this->strength;
-}
-
-int Player::get_toughness() {
-	return this->toughness;
-}
-
-int Player::get_hp() {
-	return this->hp;
-}
-
-int Player::get_max_hp() {
-	return this->max_hp;
-}
-
-int Player::get_speed() {
-	return this->speed;
+	gold = 0;
 }
 
 int Player::get_xp() {
@@ -47,28 +24,8 @@ int Player::get_max_xp() {
 	return this->max_xp;
 }
 
-void Player::set_name(string name) {
-	this->name = name;
-}
-
-void Player::set_strength(int strength) {
-	this->strength = strength;
-}
-
-void Player::set_toughness(int toughness) {
-	this->toughness = toughness;
-}
-
-void Player::set_hp(int hp) {
-	this->hp = hp;
-}
-
-void Player::set_max_hp(int max_hp) {
-	this->max_hp = max_hp;
-}
-
-void Player::set_speed(int speed) {
-	this->speed = speed;
+int Player::get_gold() {
+	return this->gold;
 }
 
 void Player::set_xp(int xp) {
@@ -79,6 +36,10 @@ void Player::set_max_xp(int max_xp) {
 	this->max_xp = max_xp;
 }
 
+void Player::set_gold(int gold) {
+	this->gold = gold;
+}
+
 void Player::display_stats() {
 	cout << "Name: " << this->name << endl;
 	cout << "Strength: " << this->strength << endl;
@@ -86,13 +47,7 @@ void Player::display_stats() {
 	cout << "Speed: " << this->speed << endl;
 	cout << "HP: " << this->hp << "/" << this->max_hp << endl;
 	cout << "XP: " << this->xp << "/" << this->max_xp << endl;
-}
-
-void Player::heal(int x) {
-	this->hp += x;
-	if (hp > max_hp) {
-		hp = max_hp;
-	}
+	cout << "Gold: " << this->gold << endl;
 }
 
 void Player::level_up() {
@@ -104,4 +59,12 @@ void Player::level_up() {
 	max_hp += 15;
 	hp = max_hp;
 	speed += 10;
+}
+
+void Player::gain_xp(int xp) {
+	this->xp += xp;
+}
+
+void Player::gain_gold(int gold) {
+	this->gold += gold;
 }
