@@ -61,8 +61,9 @@ void Game::camp() {
 		cout << "[1] go to the coast." << endl;
 		cout << "[2] sleep." << endl;
 		cout << "[3] display player info." << endl;
-		cout << "[4] Level up." << endl;
-		cout << "[5] quit game." << endl;
+		cout << "[4] view inventory." << endl;
+		cout << "[5] Level up." << endl;
+		cout << "[6] quit game." << endl;
 		string line;
 		getline(cin, line);
 
@@ -83,9 +84,13 @@ void Game::camp() {
 			hero->display_stats();
 		}
 		if (line == "4") {
-			hero->level_up();
+			cout << "Inventory:" << endl;
+			hero->view_inventory();
 		}
 		if (line == "5") {
+			hero->level_up();
+		}
+		if (line == "6") {
 			game_running = false;
 		}
 	}

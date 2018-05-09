@@ -6,6 +6,7 @@
 #include "spider.h"
 #include "player.h"
 #include "forest.h"
+#include "berry.h"
 #include <iostream>
 #include <time.h>
 #include <random>
@@ -22,7 +23,7 @@ void Forest::choose(Player * hero) {
 	int x = rand() % 100;
 	int lost = rand() % 100;
 	if (x < 10) {
-		pick_berries();
+		pick_berries(hero);
 	}
 	if (x >= 10 && x < 20) {
 		wander();
@@ -47,8 +48,10 @@ void Forest::choose(Player * hero) {
 	*/
 }
 
-void Forest::pick_berries() {
+void Forest::pick_berries(Player * hero) {
 	cout << "You go out and pick berries." << endl;
+	Berry berry;
+	hero->get_inventory()->add_to_inventory(berry);
 }
 
 void Forest::wander() {

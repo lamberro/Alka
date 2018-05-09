@@ -12,7 +12,7 @@ private:
 	//
 public:
 	void choose(Player * hero);
-	void pick_berries();
+	void pick_berries(Player * hero);
 	void wander();
 	void encounter_wolf(Player * hero);
 	void encounter_rabbit(Player * hero);

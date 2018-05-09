@@ -1,6 +1,6 @@
 # Alka
 
-current version: 0.0.6 (Crab Coast Update)
+current version: 0.0.7
 
 This is a small adventure game I've been making. I'll try to update most of the major changes to here.
 
@@ -11,7 +11,8 @@ I have no idea what the plot of this adventure is. I haven't thought that far ah
 My friends might help me on this, so I'll try to credit them where I can.
 
 ## To do (soon): ##
-* implement an inventory
+* allow items in inventory to be used
+* fix inventory memory leaks
 * Implement a loot drop system
 * Implement time system
 * Give locations randomly generated names, e.g. "Fredera Forest"
@@ -27,6 +28,10 @@ My friends might help me on this, so I'll try to credit them where I can.
 * Implement some final boss
 
 ## Recent fixes and new stuff: ##
+### 0.0.7
+* Inventory now implemented. It took forever, but I settled with using vectors. Berries found in the forest can be added to the inventory. Inventory can be viewed via the camp. Currently there is no way to use anything in the inventory.
+* Currently there are some memory leaks being caused by the inventory. Should be fixed soon.
+
 ### 0.0.6 (Crab Coast Update):
 * Implemented coast, which can be traveled to via camp. Coast has 2 events: wander and a crab encounter.
 * New encounter: CRAB! Crab has low health and low attack, but has high defense and a special move called "Crustacean Stance" that heals it.

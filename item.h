@@ -1,15 +1,22 @@
 #ifndef ITEM_H
 #define ITEM_H
-//this will likely be broken up into consumables and other items, but idk
-//the game doesn't even have an inventory yet, lol
 
-#include "player.h"
+#include <string>
+
+using namespace std;
 
 class Item {
-private:
-	//
+protected:
+	string name;
+	bool consumable;
 public:
-	virtual void consume(Player * a) = 0;
+	string get_name();
+	bool get_consumable();
+	
+	void set_name(string name);
+	void set_consumable(bool x);
+	
+	//virtual void consume(Player * a);
 };
 
 #endif // !ITEM_H
