@@ -1,6 +1,6 @@
 # Alka
 
-current version: 0.0.7
+current version: 0.0.8
 
 This is a small adventure game I've been making. I'll try to update most of the major changes to here.
 
@@ -15,22 +15,36 @@ My friends might help me on this, so I'll try to credit them where I can.
 * fix inventory memory leaks
 * Implement a loot drop system
 * Implement time system
-* Give locations randomly generated names, e.g. "Fredera Forest"
+* Give locations randomly generated names, e.g. "Fredera Forest", or give them unique names, or maybe even let the player name them
 * add location number 3.
+* add an enemy with some attack that takes multiple turns to execute (like a charging move)
+* add an enemy that uses an item in battle
 
 ## To do (eventually): ##
 * Implement story / lore, or at least some introduction
 * Implement more flavor text at camp and in battles
-* Implement some degree of character creation
+* Improve the character creation system
 * Have enemies spawn according to level
-* Implement currency and a use for currency (like a town, maybe?)
+* Implement a use for currency (like a town, maybe?)
 * Implement armor / weapons
+* Implement a way of saving/loading game data to files
 * Implement some final boss
+* Include some conlanging
+* Have scheduled events in the game, like a specific encounter on the 5th day or something
+* Possibly make a local multiplayer mode. It honestly wouldn't be that hard, with the way things are currently set up. I don't know how that would be fun or interesting, though. It would probably be turn-trading co-op, similar to Super Mario Bros 3.
 
 ## Recent fixes and new stuff: ##
+### 0.0.8
+* New character creation launches when the game is launched. There are currently 3 "classes" that give slightly different stat bonuses.
+* Sea urchin now exists. Does charging attack. It is not intimidating.
+* Items in inventory can now be selected, but this usually crashes the game, and when it doesn't the item still doesn't behave as it should.
+* Items have descriptions.
+* DEBUG mode is under way.
+
 ### 0.0.7
 * Inventory now implemented. It took forever, but I settled with using vectors. Berries found in the forest can be added to the inventory. Inventory can be viewed via the camp. Currently there is no way to use anything in the inventory.
 * Currently there are some memory leaks being caused by the inventory. Should be fixed soon.
+* Game file "Alka.exe" is now available in GitHub. Doesn't need any other files to run.
 
 ### 0.0.6 (Crab Coast Update):
 * Implemented coast, which can be traveled to via camp. Coast has 2 events: wander and a crab encounter.
