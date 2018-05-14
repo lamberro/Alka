@@ -11,7 +11,6 @@ I have no idea what the plot of this adventure is. I haven't thought that far ah
 My friends might help me on this, so I'll try to credit them where I can.
 
 ## To do (soon): ##
-* allow items in inventory to be used
 * fix inventory memory leaks
 * Implement a loot drop system
 * Implement time system
@@ -27,7 +26,6 @@ My friends might help me on this, so I'll try to credit them where I can.
 * Have enemies spawn according to level
 * Implement a use for currency (like a town, maybe?)
 * Implement armor / weapons
-* Implement a way of saving/loading game data to files
 * Implement some final boss
 * Include some conlanging
 * Have scheduled events in the game, like a specific encounter on the 5th day or something
@@ -35,10 +33,14 @@ My friends might help me on this, so I'll try to credit them where I can.
 * Have ultra rare collectible Items
 
 ## Recent fixes and new stuff: ##
+### 0.1.0
+* Alka song "Diddy \#133" by Ross Lambert was added. User is given option to play music upon launching game.
+* Game is much cleaner; game clears screen using fancy system commands.
+
 ### 0.0.9
 * Inventory system FINALLY works as intended, and hopefully crashes the game 100% less.
 * Saving and loading games is now possible! Saved game data is saved to "savefile.txt". Not all information is saved.
-* Berries can be consumed from the inventory.
+* Berries can be consumed from the inventory. Consuming an item removes it from the inventory (I know, shocking).
 * DEBUG mode now exists.
 
 ### 0.0.8

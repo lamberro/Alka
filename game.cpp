@@ -77,10 +77,9 @@ void Game::camp() {
 	bool game_running = true;
 	while (game_running == true) {
 		if (this->hero->get_xp() >= this->hero->get_max_xp()) {
-			cout << endl;
 			this->hero->level_up();
+			cout << endl;
 		}
-		cout << endl;
 		cout << "You are at your camp. Today is day " << day << ". What would you like to do?" << endl;
 		cout << "[0] go to the forest." << endl;
 		cout << "[1] go to the coast." << endl;
@@ -94,8 +93,8 @@ void Game::camp() {
 			cout << "[8] DEBUG level up." << endl;
 		string line;
 		getline(cin, line);
+		system("CLS");
 
-		cout << endl;
 		if (line == "0") {
 			locations[0]->choose(hero, inventory);
 		}
@@ -139,6 +138,7 @@ void Game::camp() {
 //Player is entity a, enemy is entity b.
 void Game::fight(Player * a, Entity * b) {
 	cout << "You're in a fight!" << endl;
+	cout << endl;
 	bool is_fight = true;
 	while (is_fight) {
 		//verify that player is still alive
@@ -149,21 +149,20 @@ void Game::fight(Player * a, Entity * b) {
 		}
 		if (is_fight) {
 			//display stats
-			cout << endl;
 			display_fight_info(a, b);
+			cout << endl;
 
 			//player action
 			bool player_action = false;
 			while (!player_action) {
-				cout << endl;
 				cout << "What would you like to do?" << endl;
 				cout << "[0] Attack." << endl;
 				cout << "[1] Attempt escape." << endl;
 				cout << "[2] Just hang around, I guess." << endl;
 				string line;
 				getline(cin, line);
+				system("CLS");
 
-				cout << endl;
 				if (line == "0") {
 					player_action = true;
 					cout << "You swing your fists" << endl;
@@ -181,18 +180,18 @@ void Game::fight(Player * a, Entity * b) {
 					cout << "You... just hang around..." << endl;
 				}
 			}
+			cout << endl;
 
 			//poison for enemy b
 			if (is_fight) {
-				cout << endl;
 				if (b->get_poisoned()) {
 					cout << b->get_name() << " takes poison damage." << endl;
 					b->poison_damage();
+					cout << endl;
 				}
 			}
 
 			if (is_fight) {
-				cout << endl;
 				//check that enemy is still alive
 				if (b->get_hp() <= 0) {
 					//enemy is dead
@@ -204,18 +203,20 @@ void Game::fight(Player * a, Entity * b) {
 					//Item new_item = b->drop_item();
 					//a->get_inventory()->add_to_inventory(new_item);
 					is_fight = false;
+					cout << endl;
 				}
 				else {
 					//enemy action
 					b->choose_action(b, a, &is_fight);
+					cout << endl;
 				}
 			}
 			//poison for player a
 			if (is_fight) {
-				cout << endl;
 				if (a->get_poisoned()) {
 					cout << a->get_name() << " takes poison damage." << endl;
 					a->poison_damage();
+					cout << endl;
 				}
 			}
 		}
@@ -301,6 +302,7 @@ void Game::view_inventory() {
 		cout << "Which item would you like to use? Enter item #, or 'Q' to quit." << endl;
 		string input;
 		getline(cin, input);
+		system("CLS");
 		if (input == "")
 			input = "no input"; //protects from crashing
 		if (input == "Q") {
@@ -342,6 +344,7 @@ void Game::player_creation(Player * p) {
 	string input;
 	cout << "Enter name: " << endl;
 	getline(cin, input);
+	system("CLS");
 	p->set_name(input);
 
 	bool chosen_specialty = false;
@@ -351,6 +354,7 @@ void Game::player_creation(Player * p) {
 		cout << "[1] thieving" << endl;
 		cout << "[2] masochism" << endl;
 		getline(cin, input);
+		system("CLS");
 		if (input == "0") {
 			chosen_specialty = true;
 			p->set_strength(12);
