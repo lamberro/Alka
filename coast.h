@@ -8,9 +8,10 @@ class Coast : public Location {
 private:
 	//
 public:
-	void choose(Player * hero);
+	void choose(Player * hero, Inventory * inv);
 	void wander();
 	void encounter_crab(Player * hero);
+	void encounter_urchin(Player * hero);
 };
 
 #endif // !COAST_H

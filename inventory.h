@@ -15,16 +15,17 @@ class Inventory {
 private:
 	int max_items;
 	int num_items;
-	vector<Item> items;
+	vector<Item*> items;
 public:
 	Inventory();
 
 	int get_num_items();
-	vector<Item> get_items();
+	vector<Item*> get_items();
 
 	//I'm not allowing the program to set the slots for now. It just feels strange to allow that.
 
-	void add_to_inventory(Item item);
+	void add_to_inventory(Item * item);
+	void remove_from_inventory(int x);
 };
 
 #endif // !INVENTORY_H

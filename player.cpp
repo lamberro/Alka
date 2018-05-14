@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "entity.h"
 #include "player.h"
 #include <string>
 #include <iostream>
@@ -14,7 +13,32 @@ Player::Player() {
 	xp = 0;
 	max_xp = 100;
 	gold = 0;
-	inventory = new Inventory;
+}
+
+Player::Player(const Player& copy) {
+	name = copy.name;
+	strength = copy.strength;
+	toughness = copy.toughness;
+	hp = copy.hp;
+	max_hp = copy.max_hp;
+	speed = copy.speed;
+	xp = copy.xp;
+	max_xp = copy.max_xp;
+	gold = copy.gold;
+}
+
+Player * Player::operator=(const Player& copy) {
+	name = copy.name;
+	strength = copy.strength;
+	toughness = copy.toughness;
+	hp = copy.hp;
+	max_hp = copy.max_hp;
+	speed = copy.speed;
+	xp = copy.xp;
+	max_xp = copy.max_xp;
+	gold = copy.gold;
+
+	return this;
 }
 
 int Player::get_xp() {
@@ -29,10 +53,6 @@ int Player::get_gold() {
 	return this->gold;
 }
 
-Inventory * Player::get_inventory() {
-	return this->inventory;
-}
-
 void Player::set_xp(int xp) {
 	this->xp = xp;
 }
@@ -45,10 +65,6 @@ void Player::set_gold(int gold) {
 	this->gold = gold;
 }
 
-void Player::set_inventory(Inventory * inv) {
-	this->inventory = inv;
-}
-
 void Player::display_stats() {
 	cout << "Name: " << this->name << endl;
 	cout << "Strength: " << this->strength << endl;
@@ -57,13 +73,6 @@ void Player::display_stats() {
 	cout << "HP: " << this->hp << "/" << this->max_hp << endl;
 	cout << "XP: " << this->xp << "/" << this->max_xp << endl;
 	cout << "Gold: " << this->gold << endl;
-}
-
-void Player::view_inventory() {
-	int num_items = this->inventory->get_items().size();
-	for (int i = 0; i < num_items; i++) {
-		cout << "Item #" << i + 1 << ": " << this->inventory->get_items()[i].get_name() << endl;
-	}
 }
 
 void Player::level_up() {

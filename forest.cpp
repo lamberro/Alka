@@ -19,11 +19,11 @@
 30% encounter giant spider
 3% get lost
 */
-void Forest::choose(Player * hero) {
+void Forest::choose(Player * hero, Inventory * inv) {
 	int x = rand() % 100;
 	int lost = rand() % 100;
 	if (x < 10) {
-		pick_berries(hero);
+		pick_berries(inv);
 	}
 	if (x >= 10 && x < 20) {
 		wander();
@@ -39,7 +39,7 @@ void Forest::choose(Player * hero) {
 	}
 	if (lost < 3) {
 		cout << endl << "You get lost and delve deeper into the forest" << endl;
-		choose(hero);
+		choose(hero, inv);
 	}
 	/*
 	if (lost >= 3) {
@@ -48,10 +48,10 @@ void Forest::choose(Player * hero) {
 	*/
 }
 
-void Forest::pick_berries(Player * hero) {
+void Forest::pick_berries(Inventory * inv) {
 	cout << "You go out and pick berries." << endl;
-	Berry berry;
-	hero->get_inventory()->add_to_inventory(berry);
+	Berry * berry = new Berry;
+	inv->add_to_inventory(berry);
 }
 
 void Forest::wander() {

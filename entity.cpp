@@ -158,6 +158,13 @@ int Entity::drop_gold() {
 	return gold;
 }
 
+/*
+Item Entity::drop_item() {
+	Berry berry;
+	return berry;
+}
+*/
+
 void Entity::poison(Entity * a) {
 	if (a->get_poisoned()) {
 		cout << a->get_name() << " is already poisoned." << endl;

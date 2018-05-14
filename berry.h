@@ -9,7 +9,8 @@ private:
 public:
 	Berry();
 
-	//void consume(Player * a);
+	virtual void consume(Entity * a);
+	virtual void consume(Player * a);
 };
 
 #endif // !BERRY_H

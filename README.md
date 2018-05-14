@@ -1,6 +1,6 @@
 # Alka
 
-current version: 0.0.8
+current version: 0.0.9
 
 This is a small adventure game I've been making. I'll try to update most of the major changes to here.
 
@@ -17,8 +17,8 @@ My friends might help me on this, so I'll try to credit them where I can.
 * Implement time system
 * Give locations randomly generated names, e.g. "Fredera Forest", or give them unique names, or maybe even let the player name them
 * add location number 3.
-* add an enemy with some attack that takes multiple turns to execute (like a charging move)
 * add an enemy that uses an item in battle
+* have some slight variation in certain creatures, like variation in strength, name, encounter text, etc.
 
 ## To do (eventually): ##
 * Implement story / lore, or at least some introduction
@@ -32,11 +32,18 @@ My friends might help me on this, so I'll try to credit them where I can.
 * Include some conlanging
 * Have scheduled events in the game, like a specific encounter on the 5th day or something
 * Possibly make a local multiplayer mode. It honestly wouldn't be that hard, with the way things are currently set up. I don't know how that would be fun or interesting, though. It would probably be turn-trading co-op, similar to Super Mario Bros 3.
+* Have ultra rare collectible Items
 
 ## Recent fixes and new stuff: ##
+### 0.0.9
+* Inventory system FINALLY works as intended, and hopefully crashes the game 100% less.
+* Saving and loading games is now possible! Saved game data is saved to "savefile.txt". Not all information is saved.
+* Berries can be consumed from the inventory.
+* DEBUG mode now exists.
+
 ### 0.0.8
 * New character creation launches when the game is launched. There are currently 3 "classes" that give slightly different stat bonuses.
-* Sea urchin now exists. Does charging attack. It is not intimidating.
+* Sea urchin now exists. Does charging attack, which takes two turns to execute. It is not intimidating.
 * Items in inventory can now be selected, but this usually crashes the game, and when it doesn't the item still doesn't behave as it should.
 * Items have descriptions.
 * DEBUG mode is under way.
@@ -77,3 +84,7 @@ My friends might help me on this, so I'll try to credit them where I can.
 
 ### 0.0.1:
 * Entering improper input in a fight won't cause you to die.
+
+### 0.0.0:
+* Game exists.
+* There is camp, fighting system, and wolves to fight.

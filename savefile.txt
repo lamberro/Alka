@@ -1,0 +1,20 @@
+0
+2
+10
+9
+14
+100 100
+0 100
+20
+0 
+
+This file is saved in the format: 
+day#
+hero name
+strength
+toughness
+speed
+hp max_hp
+xp max_xp
+gold
+#items
