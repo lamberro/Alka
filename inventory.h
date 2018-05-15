@@ -18,6 +18,9 @@ private:
 	vector<Item*> items;
 public:
 	Inventory();
+	~Inventory();
+	Inventory(const Inventory & copy);
+	Inventory * operator=(const Inventory & copy);
 
 	int get_num_items();
 	vector<Item*> get_items();

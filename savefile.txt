@@ -1,5 +1,6 @@
 0
 Red
+1
 12
 12
 11
@@ -11,6 +12,7 @@ Red
 This file is saved in the format: 
 day#
 hero name
+gender
 strength
 toughness
 speed

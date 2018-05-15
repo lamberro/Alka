@@ -7,6 +7,38 @@ Inventory::Inventory() {
 	items;
 }
 
+Inventory::~Inventory() {
+	for (int i = 0; i < num_items; i++) {
+		delete items[i];
+	}
+}
+
+Inventory::Inventory(const Inventory & copy) {
+	max_items = copy.max_items;
+	num_items = copy.num_items;
+	for (int i = 0; i < copy.num_items; i++) {
+		Item a;
+		Item * itemy = &a;
+		items.push_back(itemy);
+		*itemy = *copy.items[i];
+	}
+}
+
+Inventory * Inventory::operator=(const Inventory & copy) {
+	for (int i = 0; i < num_items; i++) {
+		delete items[i];
+	}
+	max_items = copy.max_items;
+	num_items = copy.num_items;
+	for (int i = 0; i < copy.num_items; i++) {
+		Item a;
+		Item * itemy = &a;
+		items.push_back(itemy);
+		*itemy = *copy.items[i];
+	}
+	return this;
+}
+
 int Inventory::get_num_items() {
 	return this->num_items;
 }

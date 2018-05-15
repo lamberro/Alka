@@ -19,6 +19,10 @@ string Entity::get_name() {
 	return this->name;
 }
 
+bool Entity::get_gender() {
+	return this->gender;
+}
+
 int Entity::get_strength() {
 	return this->strength;
 }
@@ -45,6 +49,10 @@ bool Entity::get_poisoned() {
 
 void Entity::set_name(string name) {
 	this->name = name;
+}
+
+void Entity::set_gender(bool g) {
+	this->gender = g;
 }
 
 void Entity::set_strength(int strength) {

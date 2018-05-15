@@ -13,7 +13,8 @@
 Game::Game() {
 	this->hero = new Player;
 	this->num_locations = 2;
-	this->locations = new Location*[num_locations]; //changes with number of locations
+	this->locations = new Location*[num_locations];
+	//upon adding a new location, don't forget to update the copy constructor and assignment operator overload
 	locations[0] = new Forest;
 	locations[1] = new Coast;
 	this->debug = false;
@@ -24,7 +25,8 @@ Game::Game() {
 Game::Game(Player * p) {
 	this->hero = p;
 	this->num_locations = 2;
-	this->locations = new Location*[num_locations]; //changes with number of locations
+	this->locations = new Location*[num_locations];
+	//upon adding a new location, don't forget to update the copy constructor and assignment operator overload
 	locations[0] = new Forest;
 	locations[1] = new Coast;
 	this->debug = false;
@@ -39,6 +41,49 @@ Game::~Game() {
 	}
 	delete[] locations;
 	delete inventory;
+}
+
+Game::Game(const Game & copy) {
+	this->hero = new Player;
+	*hero = *copy.hero;
+	this->num_locations = copy.num_locations;
+	this->locations = new Location*[num_locations];
+	locations[0] = new Forest;
+	*locations[0] = *copy.locations[0];
+	locations[1] = new Coast;
+	*locations[1] = *copy.locations[1];
+	this->debug = copy.debug;
+	this->day = copy.day;
+	this->inventory = new Inventory;
+	*inventory = *copy.inventory;
+}
+
+Game * Game::operator=(const Game & copy) {
+	if(hero)
+		delete hero;
+	if (locations) {
+		for (int i = 0; i < num_locations; i++) {
+			delete locations[i];
+		}
+		delete[] locations;
+	}
+	if(inventory)
+		delete inventory;
+
+	this->hero = new Player;
+	*hero = *copy.hero;
+	this->num_locations = copy.num_locations;
+	this->locations = new Location*[num_locations]; //changes with number of locations
+	locations[0] = new Forest;
+	*locations[0] = *copy.locations[0];
+	locations[1] = new Coast;
+	*locations[1] = *copy.locations[1];
+	this->debug = copy.debug;
+	this->day = copy.day;
+	this->inventory = new Inventory;
+	*inventory = *copy.inventory;
+
+	return this;
 }
 
 Player * Game::get_player() {
@@ -235,6 +280,7 @@ void Game::save_game() {
 	
 	wf << day << endl;
 	wf << hero->get_name() << endl;
+	wf << hero->get_gender() << endl;
 	wf << hero->get_strength() << endl;
 	wf << hero->get_toughness() << endl;
 	wf << hero->get_speed() << endl;
@@ -250,9 +296,9 @@ void Game::save_game() {
 	}
 	*/
 	wf << endl << endl << "This file is saved in the format: " << endl;
-	wf << "day#" << endl << "hero name" << endl << "strength" << endl << "toughness" << endl << "speed" << endl << "hp max_hp" << endl << "xp max_xp" << endl << "gold" << endl << "#items";
+	wf << "day#" << endl << "hero name" << endl << "gender" << endl << "strength" << endl << "toughness" << endl << "speed" << endl << "hp max_hp" << endl << "xp max_xp" << endl << "gold" << endl << "#items";
 	wf.close();
-	cout << "Data saved." << endl;
+	cout << "Data saved." << endl << endl;
 }
 
 void Game::load_game() {
@@ -263,10 +309,13 @@ void Game::load_game() {
 	}
 	else {
 		int temp_int = 0;
+		bool temp_bool = false;
 		string temp_s = "";
 		rf >> day;
 		rf >> temp_s;
 		hero->set_name(temp_s);
+		rf >> temp_bool;
+		hero->set_gender(temp_bool);
 		rf >> temp_int;
 		hero->set_strength(temp_int);
 		rf >> temp_int;
@@ -290,6 +339,7 @@ void Game::load_game() {
 		cout << "Load successful" << endl;
 	}
 	rf.close();
+	cout << endl;
 }
 
 void Game::view_inventory() {
@@ -300,6 +350,8 @@ void Game::view_inventory() {
 			cout << "Item #" << i + 1 << ": " << inventory->get_items()[i]->get_name() << " - " << inventory->get_items()[i]->get_description() << endl;
 		}
 		cout << "Which item would you like to use? Enter item #, or 'Q' to quit." << endl;
+		if (!num_items)
+			cout << "There are no items here" << endl;
 		string input;
 		getline(cin, input);
 		system("CLS");
@@ -342,11 +394,47 @@ bool Game::verify_pos_int(string x) {
 
 void Game::player_creation(Player * p) {
 	string input;
-	cout << "Enter name: " << endl;
-	getline(cin, input);
-	system("CLS");
-	p->set_name(input);
+	//get name
+	bool entering_name = true;
+	while (entering_name) {
+		cout << "Enter name: " << endl;
+		getline(cin, input);
+		system("CLS");
 
+		cout << "Your name is " << input << "." << endl;
+		bool affirm = Game::affirm();
+		if (affirm) {
+			p->set_name(input);
+			entering_name = false;
+		}
+	}
+
+	//get gender
+	bool choosing_gender = true;
+	while (choosing_gender) {
+		cout << "[m]ale or [f]emale?" << endl;
+		getline(cin, input);
+		system("CLS");
+
+		if (input == "m") {
+			cout << "You're a man." << endl;
+			bool affirm = Game::affirm();
+			if (affirm) {
+				p->set_gender(1);
+				choosing_gender = false;
+			}
+		}
+		if (input == "f") {
+			cout << "You're a woman." << endl;
+			bool affirm = Game::affirm();
+			if (affirm) {
+				p->set_gender(0);
+				choosing_gender = false;
+			}
+		}
+	}
+
+	//get specialty
 	bool chosen_specialty = false;
 	while (!chosen_specialty) {
 		cout << "Choose a specialty: " << endl;
@@ -356,31 +444,70 @@ void Game::player_creation(Player * p) {
 		getline(cin, input);
 		system("CLS");
 		if (input == "0") {
-			chosen_specialty = true;
-			p->set_strength(12);
-			p->set_toughness(12);
-			p->set_speed(11);
-			p->set_max_hp(100);
-			p->set_hp(100);
-			p->set_gold(0);
+			cout << "Fighters' strengths: strength, toughness" << endl;
+			cout << "Fighters' weaknesses: none" << endl;
+			bool affirm = Game::affirm();
+			if (affirm) {
+				chosen_specialty = true;
+				p->set_strength(12);
+				p->set_toughness(12);
+				p->set_speed(11);
+				p->set_max_hp(100);
+				p->set_hp(100);
+				p->set_gold(0);
+			}
 		}
 		if (input == "1") {
-			chosen_specialty = true;
-			p->set_strength(10);
-			p->set_toughness(9);
-			p->set_speed(14);
-			p->set_max_hp(100);
-			p->set_hp(100);
-			p->set_gold(20);
+			cout << "Thieves' strengths: speed" << endl;
+			cout << "Thieves' weaknesses: toughness" << endl;
+			cout << "Thieves' bonus: more starting gold" << endl;
+			bool affirm = Game::affirm();
+			if (affirm) {
+				chosen_specialty = true;
+				p->set_strength(10);
+				p->set_toughness(9);
+				p->set_speed(14);
+				p->set_max_hp(100);
+				p->set_hp(100);
+				p->set_gold(100);
+			}
 		}
 		if (input == "2") {
-			chosen_specialty = true;
-			p->set_strength(10);
-			p->set_toughness(13);
-			p->set_speed(10);
-			p->set_max_hp(130);
-			p->set_hp(130);
-			p->set_gold(0);
+			cout << "Masochists' strengths: toughness, HP" << endl;
+			cout << "Masochists' weaknesses: none" << endl;
+			bool affirm = Game::affirm();
+			if (affirm) {
+				chosen_specialty = true;
+				p->set_strength(10);
+				p->set_toughness(13);
+				p->set_speed(10);
+				p->set_max_hp(130);
+				p->set_hp(130);
+				p->set_gold(0);
+			}
+		}
+	}
+
+	//final affirmation
+	p->display_stats();
+	bool affirm = Game::affirm();
+	if (!affirm) {
+		Game::player_creation(p);
+	}
+}
+
+bool Game::affirm() {
+	bool inputting = true;
+	while (inputting) {
+		cout << "Is this okay? [y]/[n]." << endl;
+		string input;
+		getline(cin, input);
+		system("CLS");
+		if (input == "y") {
+			return true;
+		}
+		if (input == "n") {
+			return false;
 		}
 	}
 }

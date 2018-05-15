@@ -20,6 +20,8 @@ private:
 public:
 	Game();
 	Game(Player * p);
+	Game(const Game & copy);
+	Game * operator=(const Game & copy);
 	~Game();
 
 	Player * get_player();
@@ -40,6 +42,7 @@ public:
 	void view_inventory();
 	static bool verify_pos_int(string x);
 	static void player_creation(Player * p);
+	static bool affirm();
 };
 
 #endif

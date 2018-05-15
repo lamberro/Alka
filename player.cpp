@@ -5,6 +5,7 @@
 
 Player::Player() {
 	name = "Hero";
+	gender = 0;
 	strength = 10;
 	toughness = 10;
 	hp = 100;
@@ -17,6 +18,7 @@ Player::Player() {
 
 Player::Player(const Player& copy) {
 	name = copy.name;
+	gender = copy.gender;
 	strength = copy.strength;
 	toughness = copy.toughness;
 	hp = copy.hp;
@@ -29,6 +31,7 @@ Player::Player(const Player& copy) {
 
 Player * Player::operator=(const Player& copy) {
 	name = copy.name;
+	gender = copy.gender;
 	strength = copy.strength;
 	toughness = copy.toughness;
 	hp = copy.hp;
@@ -39,6 +42,10 @@ Player * Player::operator=(const Player& copy) {
 	gold = copy.gold;
 
 	return this;
+}
+
+Player::~Player() {
+	//nothing here atm
 }
 
 int Player::get_xp() {
@@ -67,6 +74,11 @@ void Player::set_gold(int gold) {
 
 void Player::display_stats() {
 	cout << "Name: " << this->name << endl;
+	cout << "Gender: ";
+	if (gender)
+		cout << "male" << endl;
+	else
+		cout << "female" << endl;
 	cout << "Strength: " << this->strength << endl;
 	cout << "Toughness: " << this->toughness << endl;
 	cout << "Speed: " << this->speed << endl;

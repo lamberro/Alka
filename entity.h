@@ -8,6 +8,7 @@ using namespace std;
 class Entity {
 protected:
 	string name;
+	bool gender; //1-male, 0-female
 	int strength;
 	int toughness;
 	int hp;
@@ -18,6 +19,7 @@ public:
 	Entity();
 
 	virtual string get_name();
+	virtual bool get_gender();
 	virtual int get_strength();
 	virtual int get_toughness();
 	virtual int get_hp();
@@ -26,6 +28,7 @@ public:
 	virtual bool get_poisoned();
 
 	virtual void set_name(string name);
+	virtual void set_gender(bool g);
 	virtual void set_strength(int strength);
 	virtual void set_toughness(int toughness);
 	virtual void set_hp(int hp);

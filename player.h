@@ -15,7 +15,7 @@ public:
 	Player();
 	Player(const Player& copy);
 	Player * operator=(const Player& copy);
-	//~Player();
+	~Player();
 
 	int get_xp();
 	int get_max_xp();
