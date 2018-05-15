@@ -36,7 +36,10 @@ My friends might help me on this, so I'll try to credit them where I can.
 * Upon initializing the game, make it so that locations have randomly generated spawn rates for enemies, so playthroughs of the game vary
 
 ## Recent fixes and new stuff: ##
-### 1.1
+### 1.1b
+* Included altered version of Alka song currently titled "Diddy_2" which can be renamed by the user to "Diddy" if the user wishes to listen to the alternate track.
+
+### 1.1a
 * Resolved (hopefully all) memory leak issues with following classes:
   * Inventory
   * Player
