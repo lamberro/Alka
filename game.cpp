@@ -19,6 +19,7 @@ Game::Game() {
 	locations[1] = new Coast;
 	this->debug = false;
 	this->day = 0;
+	this->time = 8;
 	this->inventory = new Inventory;
 }
 
@@ -31,6 +32,7 @@ Game::Game(Player * p) {
 	locations[1] = new Coast;
 	this->debug = false;
 	this->day = 0;
+	this->time = 8;
 	this->inventory = new Inventory;
 }
 
@@ -54,6 +56,7 @@ Game::Game(const Game & copy) {
 	*locations[1] = *copy.locations[1];
 	this->debug = copy.debug;
 	this->day = copy.day;
+	this->time = copy.time;
 	this->inventory = new Inventory;
 	*inventory = *copy.inventory;
 }
@@ -80,6 +83,7 @@ Game * Game::operator=(const Game & copy) {
 	*locations[1] = *copy.locations[1];
 	this->debug = copy.debug;
 	this->day = copy.day;
+	this->time = copy.time;
 	this->inventory = new Inventory;
 	*inventory = *copy.inventory;
 
@@ -102,6 +106,10 @@ Inventory * Game::get_inventory() {
 	return this->inventory;
 }
 
+int Game::get_time() {
+	return this->time;
+}
+
 void Game::set_player(Player * new_hero) {
 	this->hero = new_hero;
 }
@@ -118,6 +126,10 @@ void Game::set_inventory(Inventory * inv) {
 	this->inventory = inv;
 }
 
+void Game::set_time(int h) {
+	this->time = h;
+}
+
 void Game::camp() {
 	bool game_running = true;
 	while (game_running == true) {
@@ -125,7 +137,21 @@ void Game::camp() {
 			this->hero->level_up();
 			cout << endl;
 		}
-		cout << "You are at your camp. Today is day " << day << ". What would you like to do?" << endl;
+		cout << "You are at your camp. Today is day " << day << ". The time is ";
+		if (time == 0)
+			cout << "midnight." << endl;
+		else {
+			if (time < 12)
+				cout << time << ":00am." << endl;
+			else {
+				if (time == 12)
+					cout << "noon." << endl;
+				else {
+					cout << time-12 << ":00pm." << endl;
+				}
+			}
+		}
+		cout << "What would you like to do?" << endl;
 		cout << "[0] go to the forest." << endl;
 		cout << "[1] go to the coast." << endl;
 		cout << "[2] sleep." << endl;
@@ -142,15 +168,17 @@ void Game::camp() {
 
 		if (line == "0") {
 			locations[0]->choose(hero, inventory);
+			inc_time(1);
 		}
 		if (line == "1") {
 			locations[1]->choose(hero, inventory);
+			inc_time(1);
 		}
 		if (line == "2") {
-			cout << "You sleep." << endl;
+			cout << "You sleep for eight hours." << endl;
 			hero->heal(25);
 			cout << "Your health is now: " << hero->get_hp() << "/" << hero->get_max_hp() << endl;
-			day++;
+			inc_time(8);
 		}
 		if (line == "3") {
 			cout << "Player info:" << endl;
@@ -509,5 +537,13 @@ bool Game::affirm() {
 		if (input == "n") {
 			return false;
 		}
+	}
+}
+
+void Game::inc_time(int x) {
+	this->time += x;
+	while (time >= 24) {
+		time -= 24;
+		this->day++;
 	}
 }

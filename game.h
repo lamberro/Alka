@@ -16,6 +16,7 @@ private:
 	Location ** locations;
 	bool debug;
 	int day;
+	int time;
 	Inventory * inventory;
 public:
 	Game();
@@ -28,11 +29,13 @@ public:
 	int get_num_locations();
 	Location ** get_locations();
 	Inventory * get_inventory();
+	int get_time();
 
 	void set_player(Player * new_hero);
 	void set_num_locations(int num);
 	void set_locations(Location ** new_locations);
 	void set_inventory(Inventory * inv);
+	void set_time(int h);
 
 	void camp();
 	static void fight(Player * a, Entity * b);
@@ -43,6 +46,7 @@ public:
 	static bool verify_pos_int(string x);
 	static void player_creation(Player * p);
 	static bool affirm();
+	void inc_time(int x);
 };
 
 #endif

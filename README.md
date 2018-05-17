@@ -1,6 +1,6 @@
 # Alka
 
-current version: 1.1
+current version: 1.2
 
 This is a small adventure game I've been making. I'll try to update most of the major changes to here.
 
@@ -11,7 +11,6 @@ I have no idea what the plot of this adventure is. I haven't thought that far ah
 My friends might help me on this, so I'll try to credit them where I can.
 
 ## To do (soon): ##
-* Implement time system
 * add location number 3.
 * add an enemy that uses an item in battle
 * have some slight variation in certain creatures, like variation in strength, name, encounter text, etc.
@@ -36,6 +35,12 @@ My friends might help me on this, so I'll try to credit them where I can.
 * Upon initializing the game, make it so that locations have randomly generated spawn rates for enemies, so playthroughs of the game vary
 
 ## Recent fixes and new stuff: ##
+### 1.2
+* Added time of day. Time passes during certain activities.
+
+### 1.1c
+* Removed both songs because GitHub really doesn't like the fact that I used large .wav files. Really, if anyone wants music, just put it in the same folder as the .exe file and name the song "Diddy". It should play.
+
 ### 1.1b
 * Included altered version of Alka song currently titled "Diddy_2" which can be renamed by the user to "Diddy" if the user wishes to listen to the alternate track.
 
