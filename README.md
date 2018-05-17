@@ -37,6 +37,7 @@ My friends might help me on this, so I'll try to credit them where I can.
 ## Recent fixes and new stuff: ##
 ### 1.2
 * Added time of day. Time passes during certain activities.
+* Added introduction text. It's pretty lame and brief, but it's something.
 
 ### 1.1c
 * Removed both songs because GitHub really doesn't like the fact that I used large .wav files. Really, if anyone wants music, just put it in the same folder as the .exe file and name the song "Diddy". It should play.
