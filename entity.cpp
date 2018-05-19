@@ -183,9 +183,9 @@ void Entity::poison(Entity * a) {
 	}
 }
 
-//poison damage is currently 9% of max health + 1
+//poison damage is currently 5% of max health + 1
 void Entity::poison_damage() {
-	int damage = this->max_hp * 0.09;
+	int damage = this->max_hp * 0.05;
 	damage++;
 	this->hp -= damage;
 }

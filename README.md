@@ -1,40 +1,37 @@
 # Alka
 
-current version: 1.2
+current version: 1.3
 
 This is a small adventure game I've been making. I'll try to update most of the major changes to here.
 
 I'm programming in C++ using Visual Studio for the first time, so there will be some struggle.
 
-I have no idea what the plot of this adventure is. I haven't thought that far ahead yet. I'm just trying to implement some concepts that I've been studying in my classes, like inheritance and polymorphism.
+This project is my attempt to implement some concepts that I've been studying in my classes, like inheritance and polymorphism. I have learned quite a bit throughout this project.
 
-My friends might help me on this, so I'll try to credit them where I can.
+All Alka content is a product of Ross Lambert. Made using Visual Studio 2017.
 
 ## To do (soon): ##
-* add location number 3.
-* add an enemy that uses an item in battle
-* have some slight variation in certain creatures, like variation in strength, name, encounter text, etc.
-* The ability to use healing items in battle
-* Improve the character creation system: add more classes/races
+* add location number 3, which will include harder monsters that give more xp. Random chance of encountering final boss there.
+* shop to buy upgrade potions
+* Implement a final boss with high stats, a multistage battle, and varying charge attacks
+* Make end screen. End screen will score the player based on how long in in-game time the player took to defeat the boss. The game will probably give a letter grade to the player.
+* save time of day in savefile
 
 ## To do (eventually): ##
-* Implement story / lore, or at least some introduction. I was hoping that the game may follow themes or messages, like "one must love oneself before one can love others" or "all good things must come to an end" or "the flaws in other people are what makes them beautiful." Game mechanics, dialogue and lore should all work to support the themes. Still have no idea what the themes will be, though. Maybe I'll figure it out as I go.
 * Implement a loot drop system
 * Implement more flavor text at camp and in battles
-* Have enemies spawn according to level
-* Optimize input gathering method
-* Implement a use for currency (like a town, maybe?)
-* Implement armor / weapons
-* Implement a dungeon
-* Implement some final boss
-* Include some conlanging
-* Have scheduled events in the game, like a specific encounter on the 5th day or something
-* Possibly make a local multiplayer mode. It honestly wouldn't be that hard, with the way things are currently set up. I don't know how that would be fun or interesting, though. It would probably be turn-trading co-op, similar to Super Mario Bros 3.
-* Have ultra rare collectible Items
+* Optimize input gathering method (some of the code seems a bit long)
 * Make locations discoverable over time rather than available all at the start of the game.
-* Upon initializing the game, make it so that locations have randomly generated spawn rates for enemies, so playthroughs of the game vary
+* Let player choose how to level up
+* keep track of level, and probably incorporate that into the grading system at the end. Keep track of level in savefile.
 
 ## Recent fixes and new stuff: ##
+## 1.3
+* There are now rare, ultra-rare, and super-ultra-rare berries that are very useful when consumed. Good luck finding them, though. They're pretty rare.
+* Player now picks berries in the forest more often
+* Nerfed poison damage
+* Raised maximum inventory storage from 3 items to 12 items
+
 ### 1.2
 * Added time of day. Time passes during certain activities.
 * Added introduction text. It's pretty lame and brief, but it's something.

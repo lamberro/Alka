@@ -12,8 +12,8 @@
 #include <random>
 
 /*
-10% pick berries
-10% wander
+15% pick berries
+5% wander
 20% encounter rabbit
 30% encounter wolf
 30% encounter giant spider
@@ -22,10 +22,10 @@
 void Forest::choose(Player * hero, Inventory * inv) {
 	int x = rand() % 100;
 	int lost = rand() % 100;
-	if (x < 10) {
+	if (x < 15) {
 		pick_berries(inv);
 	}
-	if (x >= 10 && x < 20) {
+	if (x >= 15 && x < 20) {
 		wander();
 	}
 	if (x >= 20 && x < 40) {

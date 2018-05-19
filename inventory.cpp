@@ -2,7 +2,7 @@
 #include "inventory.h"
 
 Inventory::Inventory() {
-	max_items = 3;
+	max_items = 12;
 	num_items = 0;
 	items;
 }

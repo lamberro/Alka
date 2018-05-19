@@ -157,11 +157,12 @@ void Game::camp() {
 		cout << "[2] sleep." << endl;
 		cout << "[3] display player info." << endl;
 		cout << "[4] view inventory." << endl;
-		cout << "[5] save game." << endl;
-		cout << "[6] load game." << endl;
-		cout << "[7] quit game." << endl;
+		cout << "[5] go shopping." << endl;
+		cout << "[6] save game." << endl;
+		cout << "[7] load game." << endl;
+		cout << "[8] quit game." << endl;
 		if(debug)
-			cout << "[8] DEBUG level up." << endl;
+			cout << "[9] DEBUG level up." << endl;
 		string line;
 		getline(cin, line);
 		system("CLS");
@@ -189,15 +190,18 @@ void Game::camp() {
 			view_inventory();
 		}
 		if (line == "5") {
-			save_game();
+			cout << "Shopping! (placeholder)" << endl;
 		}
 		if (line == "6") {
-			load_game();
+			save_game();
 		}
 		if (line == "7") {
+			load_game();
+		}
+		if (line == "8") {
 			game_running = false; 
 		}
-		if (line == "8" && debug) {
+		if (line == "9" && debug) {
 			hero->level_up();
 		}
 		//DEBUG ACTIVATION
